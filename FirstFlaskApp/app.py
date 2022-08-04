@@ -1,12 +1,45 @@
-from flask import Flask    # flask is a repo and Flask is a class
+from flask import Flask    
 
 
-app = Flask(__name__)      # creating flask app and giving it a specific name using __name__
+app = Flask(__name__)  
 
-@app.route('/')     # 'http://www.google.com/'  Home route
-def home():                 # name of this method doesn't matter and can be anything
-    print("Hello World!")
-    return "Hello World!"
+stores = [
+    {
+        'name': 'My Wonderful Store',
+        'items': [
+            {
+                'name': 'My Item',
+                'price': 15.99
+            }
+        ] 
+    }
+]
 
+# POST - Used to receive data
+# GET - used to send data back only
 
-app.run(port = 5000)        # running flask application and giving it port 5000
+# POST /store data: {name}
+@app.route('/store', methods=['POST'])
+def create():
+    pass
+
+# GET /store/<string:name>
+@app.route('/store/<string:name>')  # 'http://127.0.0.1:5000/store/some_name'
+def get_store(name):
+    pass
+
+# GET /store
+@app.route('/store')
+def get_stores():
+    pass
+
+# POST /store/<string:name>/item (name:, price:)
+@app.route('/store/<string:name>/item', methods=['POST'])
+def create_item_in_store(name):
+    pass
+
+# GET /store/<string:name>/item
+@app.route('/store/<string:name>/item')
+def get_item_in_store(name):
+
+app.run(port = 5000) 
