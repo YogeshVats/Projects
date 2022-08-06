@@ -1,4 +1,4 @@
-from flask import Flask    
+from flask import Flask, jsonify
 
 
 app = Flask(__name__)  
@@ -31,7 +31,8 @@ def get_store(name):
 # GET /store
 @app.route('/store')
 def get_stores():
-    pass
+    return jsonify({'stores': stores})   # to convert stores to a dictionary as json can't be a list
+                                         # json always uses double quotes and never single quotes
 
 # POST /store/<string:name>/item (name:, price:)
 @app.route('/store/<string:name>/item', methods=['POST'])
