@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 # Notice flask request is different from requests in Python. 
 # The request context allows you to obtain data sent from the client 
@@ -18,6 +18,10 @@ stores = [
         ] 
     }
 ]
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 # POST - Used to receive data
 # GET - used to send data back only
