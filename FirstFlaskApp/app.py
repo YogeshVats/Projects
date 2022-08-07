@@ -4,6 +4,8 @@ from flask import Flask, jsonify, request, render_template
 # The request context allows you to obtain data sent from the client 
 # such as a web browser so that you can appropriately handle generating the response.
 
+# A header of an application/call is the first thing that gets analysed by the server to understand what sort of request is this.
+# In headers we can say what type of/sort of data we are sending. It is a set of key valuse pairs. e.g. "Content-Type": "application/json"
 
 app = Flask(__name__)  
 
