@@ -42,8 +42,14 @@ class Item(Resource):
     # of 404 we don't even need to check the payload because we know that nothing's coming back that we are 
     # really interested in. If 201 comes back then we need to check the payload to see what has been created.
 
-    
+class ItemList(Resource):
+    def get(self):
+        return items, 200
+
 
 api.add_resource(Item, '/item/<string:name>')     # http://127.0.0.1:5000/item/<name>
+api.add_resource(ItemList, '/items')
 
-app.run(port=5000)
+app.run(port=5000, debug=True)   
+# debug = True will show youj a nice html page lets you know what went wrong 
+# with your application.
