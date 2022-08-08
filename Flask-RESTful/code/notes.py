@@ -66,3 +66,16 @@
 # Reqparse will only allow the args defined in it and will drop the extra ones. It will terminate the request if the required field is not 
 # present in the incoming request. This way we can parse the arguments we receive in JSON payload and can only work with the ones required. 
 # This can also be used with form fields for HTML forma but that is not in the curriculum of this course.
+
+# When we defined the parser at the top in the class without using 'self' then it means that it belongs to the class and thus whenever or 
+# wherever it is called, we have to suffix it with the 'classname.' i.e. Item.parser.parse_args().
+
+# We moved the data below the if in post method, because this is an error first approach. So when a request is 
+# made then the first thing we do is look for errors and if we find an error, then we terminate the request 
+# and break. Once all the errors have been cleared, we start doing what we wanna do. And that way we know that 
+# there will be no errors in our this piece of code.
+
+# And we are stopping if the name is already present in our database then it doesn't make sense to load the 
+# data. Because we first are loading data and then we would be stopping if the item already exists and we 
+# would never use the data. So that seems a bit wasteful. which is why the data was originally below the if 
+# condition in post.
