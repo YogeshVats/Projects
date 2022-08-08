@@ -44,7 +44,7 @@ class Item(Resource):
 
 class ItemList(Resource):
     def get(self):
-        return items, 200
+        return {'items': items}
 
 
 api.add_resource(Item, '/item/<string:name>')     # http://127.0.0.1:5000/item/<name>
