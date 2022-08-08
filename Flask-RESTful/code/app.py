@@ -1,9 +1,8 @@
 # REST was designed to be stateless and for applications to interact with things called resources.
 # Notice methods have similar names to http verbs (get, post, delete, put, etc.).
 
-# import nntplib
 from flask import Flask, request
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, reqparse
 from flask_jwt import JWT, jwt_required
 
 from security import authenticate, identity
@@ -29,11 +28,18 @@ class Item(Resource):
 # A. It is 200, not 404.
 
     def post(self, name):
+        parser = reqparse.RequestParser()
+        parser.add_argument('price',
+            type=float,
+            required=True,
+            help="This field cannot be left blank!"
+        )
+        data = parser.parse_args()
         if next(filter(lambda x: x['name'] == name, items), None):
             return {'message': "An item with name '{}' already exists".format(name)}, 400   # This is a bad request because client should have verified that this item exists before sending a post request for this thus 400 status code.
 
-
-        data = request.get_json()           # This will give an error, If the request doesn't attach a json 
+        # below code is deprecated when we used parser above. And grabbed data after request parsing as 'data = parser.parse_args()'. 
+        # data = request.get_json()           # This will give an error, If the request doesn't attach a json 
                                             # payload or the request doesn't have a proper Content-Type header. 
                                             # In case you are not sure if your clients are going to give you JSON or not, you can prevent this from giving an error by:
                                             # put "force=True" as argument in get_json and it means you do not need Content-Type header. It will just look into content and it will format it, even if the Content-Type header is not set to application/json. This is nice but is dangerous because it means that without it if you look at the header and if its not set correctly you just do nothng and with it you don't look at the header. Therefore you are always going to do the processing of the text even if its is incorrect. So do't use "force=True".
@@ -52,7 +58,13 @@ class Item(Resource):
         return {'message': 'Item deleted'}
 
     def put(self, name):
-        data = request.get_json()
+        parser = reqparse.RequestParser()
+        parser.add_argument('price',
+            type=float,
+            required=True,
+            help="This field cannot be left blank!"
+        )
+        data = parser.parse_args()
         item = next(filter(lambda x: x['name'] == name, items), None)
         if item is None:
             item = {'name': name, 'price': data['price']}

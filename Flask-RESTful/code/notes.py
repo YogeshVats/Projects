@@ -55,3 +55,14 @@
 # are logged in and then we run get method of Item class.
 
 # put method can be called multiple time but the outcome should remain same for same data. It can be used to create or update existing data.
+
+# Python is gonna think that the "items" variable is only defined here, so it can not possibly use a variable before it has been defined. 
+# Python's gonna think that we're using the variable's value to define the variable's value. And that's kinda like defining a word using the 
+# same word you're trying to define. You can't do that. And that happens because we've called this variable here "items", so it's going to 
+# think that we are creating a new variable 'items', that is only going to exist inside this method delete. This is gonna be a local variable. 
+# That's normally what happens. When you create a variable, that variable is a local variable that only exists in the block or method that you 
+# have created. However we don't wanna use that variable we wanna use global items variable. So we have to do "global items".
+
+# Reqparse will only allow the args defined in it and will drop the extra ones. It will terminate the request if the required field is not 
+# present in the incoming request. This way we can parse the arguments we receive in JSON payload and can only work with the ones required. 
+# This can also be used with form fields for HTML forma but that is not in the curriculum of this course.
