@@ -22,7 +22,7 @@ class Item(Resource):
     def post(self, name):
         item = {'name': name, 'price': 12.00}
         items.append(item)
-        return(item)
+        return item, 201
 
     # We no longer need to do jsonify with flask-restful, because flask-restful does it for us so we can just
     # return dictionaries.
@@ -41,6 +41,8 @@ class Item(Resource):
     # web applications or mobile applications to check whether things went wrong or not. E.g. in the case 
     # of 404 we don't even need to check the payload because we know that nothing's coming back that we are 
     # really interested in. If 201 comes back then we need to check the payload to see what has been created.
+
+    
 
 api.add_resource(Item, '/item/<string:name>')     # http://127.0.0.1:5000/item/<name>
 
