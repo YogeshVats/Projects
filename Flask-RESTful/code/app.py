@@ -45,6 +45,12 @@ class Item(Resource):
     # return dictionaries.
 
 
+    def delete(self, name):
+        global items    # below line will throw error 'items used before definition.' because items will be treated as a local variable thus we used global items.
+        items = list(filter(lambda x: x['name'] != name, items))
+        return {'message': 'Item deleted'}
+
+
 class ItemList(Resource):
     def get(self):
         return {'items': items}
