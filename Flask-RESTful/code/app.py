@@ -1,4 +1,5 @@
 # REST was designed to be stateless and for applications to interact with things called resources.
+# Notice methods have similar names to http verbs (get, post, delete, put, etc.).
 
 # import nntplib
 from flask import Flask, request
