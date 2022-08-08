@@ -53,3 +53,5 @@
 # security file, it's going to call the identity payload, its going to get the user ID, and then it's going to 
 # get the correct user for that ID. And because that user does exist, "bob" and "asdf", then it knows that we 
 # are logged in and then we run get method of Item class.
+
+# put method can be called multiple time but the outcome should remain same for same data. It can be used to create or update existing data.
